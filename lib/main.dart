@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_vision_frontend/cubits/food_image/food_image_cubit.dart';
 import 'package:food_vision_frontend/cubits/food_vision_prediction/food_vision_prediction_cubit.dart';
 import 'package:food_vision_frontend/views/home/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 void main() {
   runApp(
     const MyApp(),
@@ -14,8 +16,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FoodVisionPredictionCubit>(
-      create: (context) => FoodVisionPredictionCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FoodVisionPredictionCubit>(
+          create: (context) => FoodVisionPredictionCubit(),
+        ),
+        BlocProvider<FoodImageCubit>(
+          create: (context) => FoodImageCubit(),
+        ),
+      ],
       child: MaterialApp(
           title: 'Food Vision Frontend',
           theme: ThemeData(
