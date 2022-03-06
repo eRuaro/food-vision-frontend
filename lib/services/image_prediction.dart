@@ -17,12 +17,9 @@ class ImagePrediction {
       path: _path,
       queryParameters: _parameters,
     );
-    debugPrint(_uri.toString());
-    final http.Response response = await http.post(
-      _uri,
-    );
 
-    if (response.statusCode == 200) {
+    try {
+      final http.Response response = await http.post(_uri);
       final parsedData = jsonDecode(response.body);
       debugPrint(parsedData.toString());
       final FoodVisionPrediction modelPrediction =
@@ -30,7 +27,8 @@ class ImagePrediction {
       debugPrint("Model Prediction: ${modelPrediction.classPrediction}");
       debugPrint("Model Confidence: ${modelPrediction.confidenceScore}");
       return modelPrediction;
-    } else {
+    } catch (e) {
+      debugPrint(e.toString());
       throw Exception("Failed to get image prediction");
     }
   }
