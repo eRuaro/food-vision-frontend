@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_vision_frontend/cubits/food_vision_prediction_cubit.dart';
+import 'package:food_vision_frontend/cubits/food_vision_prediction/food_vision_prediction_cubit.dart';
 import 'package:food_vision_frontend/views/home/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
