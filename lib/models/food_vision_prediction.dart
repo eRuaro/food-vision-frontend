@@ -6,13 +6,13 @@ class FoodVisionPrediction {
   final String confidenceScore;
 
   factory FoodVisionPrediction.fromJson(Map<String, dynamic> data) {
-    final String classPrediction = data["model-prediction"] as String;
-    final String confidenceScore =
-        data["model-prediction-confidence-score"] as String;
+    final classPrediction = data["model-prediction"];
+    final confidenceScore =
+        data["model-prediction-confidence-score"];
 
     return FoodVisionPrediction(
-      classPrediction: classPrediction,
-      confidenceScore: confidenceScore,
+      classPrediction: classPrediction.toString(),
+      confidenceScore: confidenceScore.toString(),
     );
   }
 }
