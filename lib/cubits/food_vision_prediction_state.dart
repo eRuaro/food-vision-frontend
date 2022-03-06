@@ -18,6 +18,13 @@ class FoodVisionPredictionLoading extends FoodVisionPredictionState {
   List<Object> get props => [];
 }
 
+class FoodVisionPredictionEmptyUrl extends FoodVisionPredictionState {
+  const FoodVisionPredictionEmptyUrl();
+
+  @override 
+  List<Object> get props => [];
+}
+
 class FoodVisionPredictionLoaded extends FoodVisionPredictionState {
   const FoodVisionPredictionLoaded({
     required this.prediction,

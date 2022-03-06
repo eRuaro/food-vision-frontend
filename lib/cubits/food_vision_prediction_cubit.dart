@@ -11,14 +11,18 @@ class FoodVisionPredictionCubit extends Cubit<FoodVisionPredictionState> {
   void getImagePrediction(String url) async {
     try {
       emit(const FoodVisionPredictionLoading());
-      FoodVisionPrediction prediction =
-          await ImagePrediction().getImagePrediction(url);
-      emit(
-        FoodVisionPredictionLoaded(
-          prediction: prediction.classPrediction,
-          confidenceScore: prediction.confidenceScore,
-        ),
-      );
+      if (url.isEmpty) {
+        emit(const FoodVisionPredictionEmptyUrl());
+      } else {
+        FoodVisionPrediction prediction =
+            await ImagePrediction().getImagePrediction(url);
+        emit(
+          FoodVisionPredictionLoaded(
+            prediction: prediction.classPrediction,
+            confidenceScore: prediction.confidenceScore,
+          ),
+        );
+      }
     } catch (e) {
       emit(
         FoodVisionPredictionError(
