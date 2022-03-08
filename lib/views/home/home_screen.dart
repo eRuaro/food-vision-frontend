@@ -7,8 +7,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: const [
-          Align(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.2, 
+          ),
+          const Align(
             alignment: Alignment.topCenter,
             child: Text(
               'Food Vision Front-End',
