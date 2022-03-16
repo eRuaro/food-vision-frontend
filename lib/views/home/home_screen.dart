@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_vision_frontend/cubits/food_image/food_image_cubit.dart';
 import 'package:food_vision_frontend/models/color_palette.dart';
 import 'package:food_vision_frontend/views/home/widgets/image_container.dart';
+import 'package:food_vision_frontend/views/home/widgets/image_form.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -53,13 +54,11 @@ class HomeScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: Expanded(
-                child: Text(
-                  'Food Vision Front-End',
-                  style: GoogleFonts.spaceMono(
-                    fontSize: 44,
-                    color: ColorPalette.carribeanGreen,
-                  ),
+              child: Text(
+                'Food Vision Front-End',
+                style: GoogleFonts.spaceMono(
+                  fontSize: 44,
+                  color: ColorPalette.carribeanGreen,
                 ),
               ),
             ),
@@ -106,7 +105,10 @@ class HomeScreen extends StatelessWidget {
                 );
               },
             ),
-            
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            const ImageForm(),
           ],
         ),
       ),
