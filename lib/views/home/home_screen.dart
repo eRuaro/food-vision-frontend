@@ -47,6 +47,24 @@ class HomeScreen extends StatelessWidget {
               }
             },
           ),
+          BlocListener<FoodVisionPredictionCubit, FoodVisionPredictionState>(
+            listener: (context, state) {
+              if (state is FoodVisionPredictionError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.message,
+                      style: GoogleFonts.robotoMono(
+                        color: ColorPalette.manatee,
+                        fontSize: 16,
+                      ),
+                    ),
+                    backgroundColor: const Color.fromARGB(255, 173, 39, 29),
+                  ),
+                );
+              }
+            },
+          ),
         ],
         child: Column(
           children: [

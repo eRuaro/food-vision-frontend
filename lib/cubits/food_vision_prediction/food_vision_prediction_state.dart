@@ -35,7 +35,7 @@ class FoodVisionPredictionLoaded extends FoodVisionPredictionState {
   final String confidenceScore;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [prediction, confidenceScore];
 }
 
 class FoodVisionPredictionError extends FoodVisionPredictionState {
@@ -46,5 +46,5 @@ class FoodVisionPredictionError extends FoodVisionPredictionState {
   final String message;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
