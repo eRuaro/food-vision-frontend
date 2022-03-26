@@ -9,6 +9,7 @@ class FoodVisionPredictionCubit extends Cubit<FoodVisionPredictionState> {
   FoodVisionPredictionCubit() : super(const FoodVisionPredictionInitial());
 
   void getImagePrediction(String url) async {
+    emit(const FoodVisionPredictionInitial());
     try {
       emit(const FoodVisionPredictionLoading());
       if (url.isEmpty) {

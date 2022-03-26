@@ -7,14 +7,17 @@ class FoodImageCubit extends Cubit<FoodImageState> {
   FoodImageCubit() : super(const FoodImageInitial());
 
   void getImage(String imageUrl) {
+    emit(const FoodImageInitial());
     try {
       if (imageUrl.isEmpty) {
         emit(const FoodImageEmptyUrl());
       } else {
         emit(const FoodImageLoading());
-        emit(FoodImageLoaded(
-          imageUrl: imageUrl,
-        ));
+        emit(
+          FoodImageLoaded(
+            imageUrl: imageUrl,
+          ),
+        );
       }
     } catch (e) {
       emit(

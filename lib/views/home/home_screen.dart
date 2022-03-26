@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                     content: Text(
                       'You failed to provide an image',
                       style: GoogleFonts.robotoMono(
-                        color: ColorPalette.carribeanGreen,
+                        color: const Color.fromARGB(255, 173, 39, 29),
                         fontSize: 16,
                       ),
                     ),
@@ -91,10 +91,13 @@ class HomeScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is FoodImageLoaded) {
-                  return ImageContainer(
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
                     child: Image.network(
                       state.imageUrl,
-                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      fit: BoxFit.fill,
                     ),
                   );
                 } else if (state is FoodImageError) {
@@ -141,10 +144,17 @@ class HomeScreen extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      const LinearProgressIndicator(
-                        backgroundColor: ColorPalette.lavanderWeb,
-                        valueColor: AlwaysStoppedAnimation(ColorPalette.keppel),
-                        minHeight: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: const LinearProgressIndicator(
+                          backgroundColor: ColorPalette.manatee,
+                          valueColor:
+                              AlwaysStoppedAnimation(ColorPalette.keppel),
+                          minHeight: 15,
+                        ),
                       ),
                     ],
                   );
