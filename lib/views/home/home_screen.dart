@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_vision_frontend/cubits/food_image/food_image_cubit.dart';
+import 'package:food_vision_frontend/cubits/food_vision_prediction/food_vision_prediction_cubit.dart';
 import 'package:food_vision_frontend/models/color_palette.dart';
 import 'package:food_vision_frontend/views/home/widgets/image_container.dart';
 import 'package:food_vision_frontend/views/home/widgets/image_form.dart';
@@ -107,6 +108,52 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            BlocBuilder<FoodVisionPredictionCubit, FoodVisionPredictionState>(
+              builder: (context, state) {
+                if (state is FoodVisionPredictionLoading) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Predicting Image...",
+                        style: GoogleFonts.robotoMono(
+                          color: ColorPalette.carribeanGreen,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const LinearProgressIndicator(
+                        backgroundColor: ColorPalette.lavanderWeb,
+                        valueColor: AlwaysStoppedAnimation(ColorPalette.keppel),
+                        minHeight: 20,
+                      ),
+                    ],
+                  );
+                } else if (state is FoodVisionPredictionLoaded) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Prediction: ${state.prediction}",
+                        style: GoogleFonts.robotoMono(
+                          color: ColorPalette.carribeanGreen,
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        "Confidence Score: ${state.confidenceScore}",
+                        style: GoogleFonts.robotoMono(
+                          color: ColorPalette.carribeanGreen,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return Container();
+              },
             ),
             const ImageForm(),
           ],
